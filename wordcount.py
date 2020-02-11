@@ -52,10 +52,40 @@ import sys
 # This basic command line argument parsing code is provided and
 # calls the print_words() and print_top() functions which you must define.
 
+# with open(`filename`, "r") as f:
+# f.read() -> string
+# f.readline() -> string one line
+#  f.readlines() -> array each line
+
+
+def helper(filename):
+    with open(filename, 'r') as f:
+        read_data = f.read()
+        counts = 0
+        words = read_data.lower().split()
+        dict_words = {}
+        for word in words:
+            counts = words.count(word)
+            dict_words[word] = counts
+    return dict_words
+
+
+def print_words(filename):
+    call_back = helper(filename)
+    print(sorted(call_back))
+
+
+def print_top(filename):
+    call_back = helper(filename)
+    list_tuple = call_back.items()
+    x = sorted(list_tuple, key=lambda counts: counts[1], reverse=True)[:20]
+    print(x)
+        
+
 
 def main():
     if len(sys.argv) != 3:
-        print 'usage: python wordcount.py {--count | --topcount} file'
+        print('usage: python wordcount.py {--count | --topcount } file')
         sys.exit(1)
 
     option = sys.argv[1]
