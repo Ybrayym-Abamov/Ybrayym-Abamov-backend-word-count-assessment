@@ -58,6 +58,10 @@ import sys
 #  f.readlines() -> array each line
 
 
+# THE ASSESSMENT TOOK ME A DAY TO FINISH FOR THE FACT THAT
+# I WAS INITIALLY REALLY CONFUSED WITH THE FILE READING!!!
+
+
 def helper(filename):
     with open(filename, 'r') as f:
         read_data = f.read()
@@ -72,7 +76,8 @@ def helper(filename):
 
 def print_words(filename):
     call_back = helper(filename)
-    print(sorted(call_back))
+    list_tup = call_back.items()
+    print(sorted(list_tup, key=lambda word_length: len(word_length[0]), reverse=True))
 
 
 def print_top(filename):
@@ -80,7 +85,6 @@ def print_top(filename):
     list_tuple = call_back.items()
     x = sorted(list_tuple, key=lambda counts: counts[1], reverse=True)[:20]
     print(x)
-        
 
 
 def main():
